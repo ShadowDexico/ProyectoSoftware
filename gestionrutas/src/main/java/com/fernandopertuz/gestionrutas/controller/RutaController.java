@@ -9,7 +9,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api/rutas")
-@CrossOrigin(origins = "*") 
+@CrossOrigin(origins = "*")
 public class RutaController {
 
     private final RutaService rutaService;
@@ -18,7 +18,6 @@ public class RutaController {
         this.rutaService = rutaService;
     }
 
-   
     @GetMapping("/buscar")
     public List<Map<String, Object>> buscarRutas(
             @RequestParam("origen") Integer origenId,
@@ -43,7 +42,6 @@ public class RutaController {
         return respuesta;
     }
 
-   
     @GetMapping("/{id}")
     public Map<String, Object> obtenerDetalleRuta(@PathVariable Integer id) {
         Optional<Ruta> rutaOpt = rutaService.buscarRutaPorId(id);
@@ -59,4 +57,21 @@ public class RutaController {
 
         return detalle;
     }
+
+    @GetMapping
+    public List<Map<String, Object>> obtenerTodasLasRutas() {
+        List<Ruta> rutas = rutaService.obtenerTodasLasRutas();
+        List<Map<String, Object>> respuesta = new ArrayList<>();
+
+        for (Ruta ruta : rutas) {
+            Map<String, Object> detalle = new HashMap<>();
+            detalle.put("texto", ruta.getNombre());
+            detalle.put("descripcion", ruta.getDescripcion());
+            detalle.put("imagen", ruta.getImagenUrl());
+            respuesta.add(detalle);
+        }
+
+        return respuesta;
+    }
+
 }

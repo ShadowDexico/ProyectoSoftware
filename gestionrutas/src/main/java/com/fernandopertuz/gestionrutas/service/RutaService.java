@@ -31,4 +31,9 @@ public class RutaService {
     public List<Horario> buscarHorariosPorRutaId(Integer rutaId) {
         return horarioRepository.findByRutaId(rutaId);
     }
+
+    public List<Ruta> obtenerTodasLasRutas() {
+        return rutaRepository.findAll();
+    }
+
 }
