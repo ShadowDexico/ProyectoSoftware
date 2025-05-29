@@ -20,10 +20,9 @@ public class UsuarioController {
         this.usuarioRepository = usuarioRepository;
     }
 
-    // Ruta protegida: devuelve el perfil del usuario autenticado
+   
     @GetMapping("/perfil")
     public ResponseEntity<Usuario> getPerfil(Authentication authentication) {
-        // authentication.getName() devuelve el "principal", aqui el email
         String email = authentication.getName();
         Usuario usuario = usuarioRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));

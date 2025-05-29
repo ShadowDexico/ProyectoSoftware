@@ -9,7 +9,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api/rutas")
-@CrossOrigin(origins = "*") // para permitir acceso desde frontend
+@CrossOrigin(origins = "*") 
 public class RutaController {
 
     private final RutaService rutaService;
@@ -18,7 +18,7 @@ public class RutaController {
         this.rutaService = rutaService;
     }
 
-    // GET: Buscar rutas por origen y destino
+   
     @GetMapping("/buscar")
     public List<Map<String, Object>> buscarRutas(
             @RequestParam("origen") Integer origenId,
@@ -43,7 +43,7 @@ public class RutaController {
         return respuesta;
     }
 
-    // GET: Obtener detalle de una ruta (por ID)
+   
     @GetMapping("/{id}")
     public Map<String, Object> obtenerDetalleRuta(@PathVariable Integer id) {
         Optional<Ruta> rutaOpt = rutaService.buscarRutaPorId(id);

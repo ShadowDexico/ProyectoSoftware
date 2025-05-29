@@ -31,7 +31,6 @@ public class OAuth2Controller {
             nuevo.setProveedor("google");
             return usuarioRepository.save(nuevo);
         });
-
         return "Bienvenido " + usuario.getNombre() + "!";
     }
 }

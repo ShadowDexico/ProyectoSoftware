@@ -46,6 +46,7 @@ public class CustomOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             return usuarioRepository.save(nuevo);
         });
         String jwt = jwtUtil.generateToken(email);
-        response.sendRedirect("http://localhost:8080/login/success?token=" + jwt);
+        response.sendRedirect("http://localhost:8080/oauth2/redirect?token=" + jwt);
+
     }
 }
